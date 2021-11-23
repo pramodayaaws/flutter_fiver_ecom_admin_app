@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/dashboard/dashboard_screen.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/home/home_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/sign_in/sign_in_screen.dart';
 
 // This is the best practice
@@ -12,11 +15,22 @@ class SplashBody extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
+//Check the user is already logged in or not
+void navigateMethod(BuildContext context){
+  var user = FirebaseAuth.instance.currentUser;
+  if(user != null){
+    Navigator.pushNamed(context, DashboardScreen.routeName);
+  }else{
+    Navigator.pushNamed(context, SignInScreen.routeName);
+  }
+}
+
+
 class _BodyState extends State<SplashBody> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tokoto, Let’s shop!",
+      "text": "Welcome to Tokoto, Let’s go the admin",
       "image": "assets/images/splash_1.png"
     },
     {
@@ -70,7 +84,7 @@ class _BodyState extends State<SplashBody> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                       navigateMethod(context);
                       },
                     ),
                     Spacer(),

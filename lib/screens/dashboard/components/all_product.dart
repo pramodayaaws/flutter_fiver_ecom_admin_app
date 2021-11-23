@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fiver_ecom_admin_app/components/product_card.dart';
 import 'package:flutter_fiver_ecom_admin_app/models/Product.dart';
-import '../../../common/utility.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
@@ -10,7 +9,11 @@ class AllProducts extends StatelessWidget {
 
   List productList = [];
   void getProductList(List list, int chunkSize) {
-    productList = FiverAppUtility.arrayIntoSubArrays(list, chunkSize);
+    int len = list.length;
+    for (var i = 0; i < len; i += chunkSize) {
+      int size = i+chunkSize;
+      productList.add(list.sublist(i, size > len ? len : size));
+    }
   }
 
 

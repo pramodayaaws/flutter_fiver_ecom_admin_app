@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiver_ecom_admin_app/components/default_button.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/home/home_screen.dart';
 import '../../../size_config.dart';
 
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
           child: DefaultButton(
             text: "Back to home",
             press: () {
-              Navigator.pushNamed(context, HomeScreen.routeName);
+              Navigator.pushNamed(context, DashboardScreen.routeName);
             },
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/home/home_screen.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/manage_product/manage_product_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/profile/profile_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -49,8 +50,10 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.pushNamed(context, HomeScreen.routeName),
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                onPressed: () {},
+                icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
+                color: MenuState.manageProduct == selectedMenu ? kPrimaryColor : inActiveIconColor,),
+                onPressed: () =>
+                  Navigator.pushNamed(context, ManageProductScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),

@@ -1,0 +1,1 @@
+enum ManageProductPage {addProduct, category, }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_fiver_ecom_admin_app/common/utility.dart';
 import 'package:flutter_fiver_ecom_admin_app/components/rounded_icon_btn.dart';
-import 'package:flutter_fiver_ecom_admin_app/models/Product.dart';
 import '../../../constants.dart';
+import '../../../models/AdminProduct.dart';
 import '../../../size_config.dart';
 
 class ColorDots extends StatefulWidget {
@@ -12,7 +12,7 @@ class ColorDots extends StatefulWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final AdminProduct product;
 
   @override
   State<ColorDots> createState() => _ColorDotsState();

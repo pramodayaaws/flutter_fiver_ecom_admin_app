@@ -30,6 +30,17 @@ const kIsNotFavoriteColor = Color(0xFFDBDEE4);
 
 
 
+const Color KOrdersCardColor = Color(0xff8f0000);
+const Color KMessagesCardColor = Color(0xFF7B1FA2);
+const Color KProductsCardColor = Color(0xFFB30000);
+const Color KCategoryCardColor = Color(0xF4433600);
+const Color KSpecialCardColor = Color(0xD81B6000);
+const Color KPopularCardColor = Color(0x76FF0300);
+const Color KSpecialOffersCardColor = Color(0x90A4AE00);
+
+
+
+
 const kAnimationDuration = Duration(milliseconds: 200);
 
 final headingStyle = TextStyle(
@@ -57,6 +68,10 @@ const String kAddressNullError = "Please Enter your address";
 const String kFirebaseUserLoginError = "The password is invalid or the user does not have a password.";
 const String kFirebaseUserLoginUnknownError = "Unknown Login Error";
 const String kFirebaseEmailAlreadyInUse = "Email already in use";
+
+///admin add product input fields
+const String kEmptyInput = "Input field cannot be empty";
+const String kEmptyPrice = "Price cannot be empty";
 
 final otpInputDecoration = InputDecoration(
   contentPadding:
