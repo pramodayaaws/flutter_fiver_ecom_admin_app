@@ -10,28 +10,52 @@ import 'product_description.dart';
 import 'top_rounded_container.dart';
 import 'product_images.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final AdminProduct product;
 
   Body({Key? key, required this.product}) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
+
   String? email;
+
   String? password;
+
   String? name;
+
   String? description;
+
   String? title;
+
   double? height;
+
   double? weight;
+
   double? width;
+
   double? price;
+
   double? oldPrice;
+
   double? discount;
+
   String? heightType;
+
   String? widthType;
+
   String? weightType;
+
   String? priceType;
+
   bool? remember = false;
+
+  List<String> images =   [ "assets/images/ps4_console_white_1.png",];
+
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -46,29 +70,46 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ProductImages(product: product),
+        ProductImages(product: widget.product),
         TopRoundedContainer(
           color: Colors.white,
           child: Column(
             children: [
+              ///title
               buildTitleFormField(),
               SizedBox(height: getProportionateScreenHeight(30)),
+              ///description
               buildDescriptionFormField(),
               SizedBox(height: getProportionateScreenHeight(30)),
-              buildPriceFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
-              buildHeightFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
-              buildWidthFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
-              buildWeightFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
+              ///price
               Row(
                 children: [
-                 Expanded(flex: 3 ,child: buildHeightFormField()), Expanded(flex: 1,child: buildDropDown())
+                  Expanded(flex: 8,child: buildPriceFormField()), Expanded(flex:1,child: SizedBox(height: getProportionateScreenHeight(30))), Expanded(flex: 6,child: buildPriceDropDown())
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(30)),
+              ///height
+              Row(
+                children: [
+                  Expanded(flex: 8,child: buildHeightFormField()), Expanded(flex:1,child: SizedBox(height: getProportionateScreenHeight(30))), Expanded(flex: 6,child: buildHeightDropDown())
+                ],
+              ),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              ///width
+              Row(
+                children: [
+                  Expanded(flex: 8,child: buildWidthFormField()), Expanded(flex:1,child: SizedBox(height: getProportionateScreenHeight(30))), Expanded(flex: 6,child: buildWidthDropDown())
+                ],
+              ),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              ///weight
+              Row(
+                children: [
+                  Expanded(flex: 8,child: buildWeightFormField()), Expanded(flex:1,child: SizedBox(height: getProportionateScreenHeight(30))), Expanded(flex: 6,child: buildWeightDropDown())
+                ],
+              ),
+              SizedBox(height: getProportionateScreenHeight(30)),
+
             ],
           ),
         ),
@@ -96,7 +137,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Title",
-        hintText: "Enter product title",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -123,7 +163,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Description",
-        hintText: "Enter product description",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -150,7 +189,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Price",
-        hintText: "Enter product price",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -167,7 +205,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Height",
-        hintText: "Enter product height",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -184,7 +221,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Width",
-        hintText: "Enter product width",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -201,7 +237,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Weight",
-        hintText: "Enter product weight",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -218,7 +253,6 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Old Price",
-        hintText: "Enter product old price",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
@@ -235,41 +269,136 @@ class Body extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Discount",
-        hintText: "Enter product discount",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
   }
 
-
-
-  ///Build Dropdown
-  Widget buildDropDown(){
-    return  DropdownButton<String>(
-      value: heightType,
-      icon: const Icon(Icons.arrow_downward),
-      iconSize: 24,
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
+  ///Build height Dropdown
+  Widget buildHeightDropDown(){
+    return  Container(
+      padding: EdgeInsets.only(left: 25, right: 15),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 1),
+        borderRadius: BorderRadius.circular(20)
       ),
-      onChanged: (newValue) {
-        heightType = newValue!;
-      },
-      items: <String>['mm', 'cm', 'm',]
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+      child: DropdownButton<String>(
+        value: heightType,
+        icon: const Icon(Icons.arrow_drop_down),
+        iconSize: 24,
+        elevation: 16,
+        isExpanded: true,
+        underline: Container(
+          height: 2,
+        ),
+        onChanged: (newValue) {
+          heightType = newValue!;
+        },
+        items: <String>['mm', 'cm', 'm',]
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
     );
   }
 
+  ///Build weight Dropdown
+  Widget buildWeightDropDown(){
+    return  Container(
+      padding: EdgeInsets.only(left: 25, right: 15),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1),
+          borderRadius: BorderRadius.circular(20)
+      ),
+      child: DropdownButton<String>(
+        value: weightType,
+        icon: const Icon(Icons.arrow_drop_down),
+        iconSize: 24,
+        elevation: 16,
+        isExpanded: true,
+        underline: Container(
+          height: 2,
+        ),
+        onChanged: (newValue) {
+          weightType = newValue!;
+        },
+        items: <String>['mg', 'g', 'kg','pound', 'ounce', 'penny']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
+  }
 
+  ///Build price Dropdown
+  Widget buildPriceDropDown(){
+    return  Container(
+      padding: EdgeInsets.only(left: 25, right: 15),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1),
+          borderRadius: BorderRadius.circular(20),
+      ),
+      child: DropdownButton<String>(
+        value: priceType,
+        icon: const Icon(Icons.arrow_drop_down),
+        iconSize: 24,
+        elevation: 16,
+        isExpanded: true,
+        underline: Container(
+          height: 2,
+        ),
+        onChanged: (newValue) {
+          priceType = newValue!;
+        },
+        items: <String>['usd','inr']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  ///Build width Dropdown
+  Widget buildWidthDropDown(){
+    return SizedBox();
+    return  Container(
+      padding: EdgeInsets.only(left: 25, right: 15),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: DropdownButton<String>(
+        value: widthType,
+        icon: const Icon(Icons.arrow_drop_down),
+        iconSize: 24,
+        elevation: 16,
+        isExpanded: true,
+        underline: Container(
+          height: 2,
+        ),
+        onChanged: (newValue) {
+          widthType = newValue!;
+        },
+        items: <String>['mm', 'cm', 'm',]
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
+  }
 }
 
 
