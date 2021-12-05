@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class AdminProduct {
@@ -8,15 +10,19 @@ class AdminProduct {
       priceType,
       heightType,
       weightType,
-      widthType;
+      widthType,
+      uid;
   final List<String> images;
+  final List<File> imageList;
   final List<Color> colors;
   final double rating, price, height, width, weight, oldPrice, discount;
   final bool isFavourite, isPopular, isOffer;
 
   AdminProduct({
+    required this.uid,
     required this.id,
     required this.images,
+    required this.imageList,
     required this.colors,
     this.rating = 0.0,
     this.isFavourite = false,
@@ -37,6 +43,57 @@ class AdminProduct {
     required this.widthType,
     required this.priceType,
   });
+
+  //receiving data from server
+  factory AdminProduct.fromMap(map) {
+    return AdminProduct(
+        uid: map['uid'],
+        id: map['id'],
+        images: map['images'],
+        imageList: map['imageList'],
+        colors: map['colors'],
+        title: map['title'],
+        price: map['price'],
+        description: map['description'],
+        height: map['height'],
+        weight: map['weight'],
+        width: map['width'],
+        categoryId: map['categoryId'],
+        categoryName: map['categoryName'],
+        oldPrice: map['oldPrice'],
+        discount: map['discount'],
+        isOffer: map['isOffer'],
+        heightType: map['heightType'],
+        weightType: map['weightType'],
+        widthType: map['widthType'],
+        priceType: map['priceType']);
+  }
+
+  //sending data to server
+  Map<String, dynamic> toMap() {
+    return {
+      'uid': uid,
+      'id': id,
+      'images': images,
+      'imageList': imageList,
+      'colors': colors,
+      'title': title,
+      'price': price,
+      'description': description,
+      'weight': weight,
+      'height': height,
+      'width': width,
+      'categoryId': categoryId,
+      'categoryName': categoryName,
+      'oldPrice': oldPrice,
+      'discount': discount,
+      'isOffer': isOffer,
+      'heightType': heightType,
+      'weightType': weightType,
+      'widthType': widthType,
+      'priceType': priceType,
+    };
+  }
 }
 
 /**
@@ -44,10 +101,12 @@ class AdminProduct {
  */
 
 AdminProduct initialAdminObject = AdminProduct(
+    uid: '',
     id: 0,
     images: [
       "assets/images/ps4_console_white_1.png",
     ],
+    imageList: [],
     colors: [Color(0xFFF6625E)],
     title: "",
     price: 0.0,

@@ -7,24 +7,13 @@ import 'package:provider/provider.dart';
 import '../../providers/product_provider.dart';
 import 'components/body.dart';
 import 'components/custom_app_bar.dart';
+import 'components/speed_dial_button_column.dart';
 
 class AddProductScreen extends StatelessWidget {
   static String routeName = "/add_product";
 
 
-  void getImage(BuildContext context) async{
-    var addProductProvider = Provider.of<ProductProvider>(context, listen: false);
-    var productObj = addProductProvider.getAddProductObject();
-    var imgArr = productObj.images;
 
-    final ImagePicker _picker = ImagePicker();
-
-    await _picker.pickImage(source: ImageSource.gallery,).then((value) => {
-      imgArr.add(value!.path),
-      addProductProvider.updateAddProductObject(productObj)
-    });
-
-  }
 
 
 
@@ -38,16 +27,7 @@ class AddProductScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
         child: CustomAppBar(rating: initialAdminObject.rating),
       ),
-      floatingActionButton: FloatingActionButton(
-          elevation: 0.0,
-          child: new Icon(Icons.check),
-          backgroundColor: new Color(0xFFE57373),
-          onPressed: (){
-            getImage(context);
-          }
-      ),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SpeedDialButtonColumn(),
       body: Body(product: initialAdminObject),
     );
   }
@@ -57,13 +37,4 @@ class ProductDetailsArguments {
   final AdminProduct adminProduct;
 
   ProductDetailsArguments({required this.adminProduct});
-}
-
-
-addItem(BuildContext context){
-  var addProductProvider = Provider.of<ProductProvider>(context, listen: false);
-  var productObj = addProductProvider.getAddProductObject();
-  var imgArr = productObj.images;
-  imgArr.add("assets/images/Image Popular Product 2.png");
-  addProductProvider.updateAddProductObject(productObj);
 }
