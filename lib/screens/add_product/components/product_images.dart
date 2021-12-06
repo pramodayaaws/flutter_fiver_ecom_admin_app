@@ -57,7 +57,7 @@ class _ProductImagesState extends State<ProductImages> {
                 ...List.generate(_imagesListSize,
                     (index) => buildSmallProductPreview(index)),
               ],
-            )
+            ),
           ],
         );
       },

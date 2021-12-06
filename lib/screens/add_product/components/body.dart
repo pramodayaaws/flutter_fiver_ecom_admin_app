@@ -44,13 +44,13 @@ class _BodyState extends State<Body> {
 
   double? discount;
 
-  String? heightType;
+  String? heightType = "cm";
 
-  String? widthType;
+  String? widthType ="cm";
 
-  String? weightType;
+  String? weightType ="kg";
 
-  String? priceType;
+  String? priceType = "usd";
 
   bool? remember = false;
 
@@ -109,7 +109,16 @@ class _BodyState extends State<Body> {
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(30)),
+              SizedBox(
+                width: SizeConfig.screenWidth * 0.6,
+                child: DefaultButton(
+                  text: "Save",
+                  press: () {
 
+                  },
+                ),
+              ),
+              SizedBox(height: getProportionateScreenHeight(60)),
             ],
           ),
         ),
@@ -138,7 +147,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Title",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.title),
       ),
     );
   }
@@ -164,7 +173,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Description",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.description),
       ),
     );
   }
@@ -190,7 +199,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Price",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.price_check),
       ),
     );
   }
@@ -206,7 +215,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Height",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.swap_vert),
       ),
     );
   }
@@ -222,7 +231,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Width",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.swap_horiz),
       ),
     );
   }
@@ -238,7 +247,7 @@ class _BodyState extends State<Body> {
       decoration: const InputDecoration(
         labelText: "Weight",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: Icon(Icons.line_weight),
       ),
     );
   }
@@ -293,7 +302,9 @@ class _BodyState extends State<Body> {
           height: 2,
         ),
         onChanged: (newValue) {
-          heightType = newValue!;
+          setState(() {
+            heightType = newValue!;
+          });
         },
         items: <String>['mm', 'cm', 'm',]
             .map<DropdownMenuItem<String>>((String value) {
@@ -324,7 +335,9 @@ class _BodyState extends State<Body> {
           height: 2,
         ),
         onChanged: (newValue) {
-          weightType = newValue!;
+          setState(() {
+            weightType = newValue!;
+          });
         },
         items: <String>['mg', 'g', 'kg','pound', 'ounce', 'penny']
             .map<DropdownMenuItem<String>>((String value) {
@@ -355,7 +368,11 @@ class _BodyState extends State<Body> {
           height: 2,
         ),
         onChanged: (newValue) {
-          priceType = newValue!;
+          setState(() {
+            setState(() {
+              priceType = newValue!;
+            });
+          });
         },
         items: <String>['usd','inr']
             .map<DropdownMenuItem<String>>((String value) {
@@ -370,7 +387,6 @@ class _BodyState extends State<Body> {
 
   ///Build width Dropdown
   Widget buildWidthDropDown(){
-    return SizedBox();
     return  Container(
       padding: EdgeInsets.only(left: 25, right: 15),
       decoration: BoxDecoration(
@@ -387,7 +403,9 @@ class _BodyState extends State<Body> {
           height: 2,
         ),
         onChanged: (newValue) {
-          widthType = newValue!;
+          setState(() {
+            widthType = newValue!;
+          });
         },
         items: <String>['mm', 'cm', 'm',]
             .map<DropdownMenuItem<String>>((String value) {

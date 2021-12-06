@@ -104,7 +104,7 @@ AdminProduct initialAdminObject = AdminProduct(
     uid: '',
     id: 0,
     images: [
-      "assets/images/ps4_console_white_1.png",
+      "https://firebasestorage.googleapis.com/v0/b/fiverecommerceapp.appspot.com/o/images?alt=media&token=287cd3c2-a94e-4aea-b90c-aac77060bb41",
     ],
     imageList: [],
     colors: [Color(0xFFF6625E)],
