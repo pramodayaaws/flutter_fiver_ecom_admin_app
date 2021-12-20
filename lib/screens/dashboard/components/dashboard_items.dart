@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fiver_ecom_admin_app/models/Product.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/order/order_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'dashboard_card_banner.dart';
@@ -51,9 +52,8 @@ class _DashboardItemsState extends State<DashboardItems> {
               GestureDetector(child: DashboardCardBanner(title: 'Orders \n',
                 subTitle: orderText,
                 backgroundColor: KOrdersCardColor,), onTap: () {
-                setState(() {
-                  count = count + 1;
-                });
+                  Navigator.pushNamed(context, OrderScreen.routeName);
+             
               },),
               SizedBox(width: getProportionateScreenWidth(8)),
               GestureDetector(child: DashboardCardBanner(title: 'Messages \n',

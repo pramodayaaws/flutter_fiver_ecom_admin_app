@@ -22,7 +22,6 @@ const kPrimaryGradientColor = LinearGradient(
   colors: [Color(0xFFCE93D8), Color(0xFF7B1FA2)],
 );
 const kSecondaryColor = Color(0xFF979797);
-const kTextColor = Color(0xFF757575);
 const kIconBackgroundColor = Color(0xFFE1BEE7);
 const kIconColor = Color(0xFF7B1FA2);
 const kIsFavoriteColor = Color(0xFF7B1FA2);
@@ -38,8 +37,9 @@ const Color KSpecialCardColor = Color(0xD81B6000);
 const Color KPopularCardColor = Color(0x76FF0300);
 const Color KSpecialOffersCardColor = Color(0x90A4AE00);
 
-
-
+///Text colors
+const kTextColor = Color(0xFF757575);
+const Color kTextHeadColor1 = Color(0xFF000000);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 

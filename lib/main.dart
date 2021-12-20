@@ -1,7 +1,7 @@
-import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fiver_ecom_admin_app/providers/order_provider.dart';
 import 'package:flutter_fiver_ecom_admin_app/providers/product_provider.dart';
 import 'package:flutter_fiver_ecom_admin_app/providers/user_provider.dart';
 import 'package:flutter_fiver_ecom_admin_app/routes.dart';
@@ -19,6 +19,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
       ],
       child: MyApp(),
     ),

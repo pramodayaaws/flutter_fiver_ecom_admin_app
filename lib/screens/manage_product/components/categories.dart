@@ -13,17 +13,17 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> subHeading = [
-      {"icon": "assets/icons/add-product.svg", "text": "Product", "manageProductPage" : ManageProductPage.addProduct},
-      {"icon": "assets/icons/add-category.svg", "text": "Category" , "manageProductPage" :  ManageProductPage.category},
+      {"icon": "assets/icons/Plus Icon.svg", "text": "Product", "manageProductPage" : ManageProductPage.addProduct},
+      {"icon": "assets/icons/Plus Icon.svg", "text": "Category" , "manageProductPage" :  ManageProductPage.category},
     ];
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CategoryCard(icon: subHeading[0]['icon'],text: subHeading[0]['text'],manageProductPage: subHeading[0]['manageProductPage'], press: () {  Navigator.pushNamed(context, AddProductScreen.routeName);},),
-          CategoryCard(icon: subHeading[1]['icon'],text: subHeading[0]['text'],manageProductPage: subHeading[0]['manageProductPage'], press: () {  Navigator.pushNamed(context, ProfileScreen.routeName);},),
+          CategoryCard(icon: subHeading[1]['icon'],text: subHeading[1]['text'],manageProductPage: subHeading[0]['manageProductPage'], press: () {  Navigator.pushNamed(context, ProfileScreen.routeName);},),
         ]
       ),
     );
@@ -48,7 +48,7 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: getProportionateScreenWidth(55),
+        width: getProportionateScreenWidth(65),
         child: Column(
           children: [
             Container(

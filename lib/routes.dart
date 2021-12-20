@@ -8,6 +8,9 @@ import 'package:flutter_fiver_ecom_admin_app/screens/forgot_password/forgot_pass
 import 'package:flutter_fiver_ecom_admin_app/screens/home/home_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/login_success/login_success_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/manage_product/manage_product_screen.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/order/order_screen.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/order_detail/components/order_detail.dart';
+import 'package:flutter_fiver_ecom_admin_app/screens/order_detail/order_detail_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/otp/otp_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/profile/profile_screen.dart';
 import 'package:flutter_fiver_ecom_admin_app/screens/sign_in/sign_in_screen.dart';
@@ -32,5 +35,6 @@ final Map<String, WidgetBuilder> routes = {
   DashboardScreen.routeName: (context) => DashboardScreen(),
   ManageProductScreen.routeName: (context) => ManageProductScreen(),
   AddProductScreen.routeName: (context) => AddProductScreen(),
-
+  OrderScreen.routeName: (context) => OrderScreen(),
+  OrderDetailScreen.routeName: (context) => OrderDetailScreen()
 };

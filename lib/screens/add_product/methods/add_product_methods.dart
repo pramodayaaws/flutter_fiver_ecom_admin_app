@@ -2,11 +2,14 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fiver_ecom_admin_app/firebase/product_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/globals.dart';
 import '../../../providers/product_provider.dart';
+
+ProductServiceFirebase _productServiceFirebase = ProductServiceFirebase();
 
 class AddProductMethods{
   BuildContext context;
@@ -22,7 +25,7 @@ class AddProductMethods{
     final imageTempory = File(image.path);
     productObj.imageList.add(imageTempory);
     addProductProvider.updateAddProductObject(productObj);
-    uploadImage(imageTempory);
+    _productServiceFirebase.uploadImage(imageTempory, context);
   }
 
   Future deleteProductImage() async {
@@ -41,23 +44,5 @@ class AddProductMethods{
     if(addProductSelectedImageIndex==0) return;
     addProductSelectedImageIndex-=1;
   }
-
-/// Uploading file to firestore and get the downloaded url
-Future uploadImage(File file) async{
-  var addProductProvider = Provider.of<ProductProvider>(context, listen: false);
-  var productObj = addProductProvider.getAddProductObject();
-  
-  
-    String? downloadUrl;
-    Reference ref = FirebaseStorage.instance.ref().child("images");
-    await ref.putFile(file);
-    downloadUrl = await ref.getDownloadURL().then((value) {
-      productObj.images.add(value.toString());
-      addProductProvider.updateAddProductObject(productObj);
-    });
-    
-    
-}
-
 
 }
